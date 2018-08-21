@@ -1,0 +1,22 @@
+service: lambda-ssr-poc
+
+plugins:
+  - serverless-apigw-binary
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    cors:
+      origin: '*'
