@@ -2,11 +2,16 @@ service: lambda-ssr-poc
 
 plugins:
   - serverless-apigw-binary
+  - serverless-api-cloudfront
 
 custom:
   apigwBinary:
     types:
       - '*/*'
+  apiCloudFront:
+    domain:
+      - www.example.com
+    certificate: arn:aws:acm:us-east-1:000000000000:certificate/00000000-1111-2222-3333-444444444444
 
 provider:
   name: aws
